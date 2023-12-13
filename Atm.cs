@@ -1,16 +1,20 @@
+using System.Text;
+
 public static class Atm {
     private static int[] cartridges = [10, 50, 100];
-    public static int[] payouts = [100];//[30, 50, 60, 80, 140, 230, 370, 610, 980];
+    internal static int[] payouts = [100];//[30, 50, 60, 80, 140, 230, 370, 610, 980];
 
-    public static void GetCombinations(int option) {  
+    public static string GetCombinations(int option) {  
+        StringBuilder sb = new StringBuilder();
         if (option > 0) {
-            var payout = payouts[option - 1];    
-            Console.WriteLine("Payout: " + payout);
+            var payout = payouts[option - 1];            
             foreach (string s in GetCombinations(cartridges, payout, "")) {
-                Console.WriteLine(s);
+                sb.AppendLine(s);
             }
-            Console.WriteLine(Environment.NewLine);
+            sb.AppendLine(Environment.NewLine);
+            return sb.ToString();
         }       
+        return string.Empty;
     }
     private static IEnumerable<string> GetCombinations(int[] cartridges, int sum, string values) {
         for (int i = 0; i < cartridges.Length; i++) {

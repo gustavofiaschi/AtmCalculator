@@ -13,7 +13,8 @@ class Program
                 Console.WriteLine($"{i + 1}. Payout: " + Atm.payouts[i]);
             }
             option = Convert.ToInt32(Console.ReadLine());
-            Atm.GetCombinations(option);
+            var result = Atm.GetCombinations(option);
+            Console.WriteLine(result);
         }
     }    
 }
