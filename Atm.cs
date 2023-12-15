@@ -7,9 +7,14 @@ public static class Atm {
     public static string GetCombinations(int option) {  
         StringBuilder sb = new StringBuilder();
         if (option > 0) {
-            var payout = payouts[option - 1];            
+            var payout = payouts[option - 1];    
+            var lastLength = 0;        
+            sb.AppendLine(">>> Result:");
             foreach (string s in GetCombinations(cartridges, payout, "")) {
-                sb.AppendLine(s);
+                if (lastLength != s.Length) {
+                    lastLength = s.Length;                    
+                    sb.AppendLine(s);
+                }                
             }
             sb.AppendLine(Environment.NewLine);
             return sb.ToString();
